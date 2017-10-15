@@ -1,0 +1,27 @@
+{
+  "name": "pubber",
+  "version": "1.0.0",
+  "description": "A pubsub library for subscriptions, dispatchers and unsubscribing.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/composor/pubber.git"
+  },
+  "keywords": [
+    "pubsub",
+    "subscribe",
+    "publish",
+    "dispatch",
+    "emit",
+    "emitter"
+  ],
+  "author": "rbiggs",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/composor/pubber/issues"
+  },
+  "homepage": "https://github.com/composor/pubber#readme"
+}
