@@ -1,10 +1,10 @@
 {
   "name": "pubber",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "A pubsub library for subscriptions, dispatchers and unsubscribing.",
   "main": "index.js",
   "scripts": {
-    "build:uglify": "uglifyjs src/index.js -o index.min.js -c -m",
+    "build:uglify": "uglifyjs src/index.js -o index.js -c -m",
     "build": "npm run build:uglify",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
