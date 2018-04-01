@@ -1,1 +1,1 @@
-const s={},h=s.hasOwnProperty;export const dispatch=(t,c)=>{h.call(s,t)&&s[t].map(s=>s(void 0!=c?c:{}))};export const subscribe=(t,c)=>{h.call(s,t)||(s[t]=[]);s[t].push(c)};export const unsubscribe=t=>delete s[t];
+const s={},h=s.hasOwnProperty;export const dispatch=(c,e)=>{h.call(s,c)&&s[c].callback.map(o=>{o(void 0!=e?e:{}),s[c].once&&unsubscribe(c)})};export const subscribe=(c,e,o)=>{!h.call(s,c)&&(s[c]={topic:c,callback:[],once:o});s[c].callback.push(e)};export const unsubscribe=c=>delete s[c];

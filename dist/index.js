@@ -1,0 +1,2 @@
+!function(e,n){"object"==typeof exports&&"undefined"!=typeof module?n(exports):"function"==typeof define&&define.amd?define(["exports"],n):n(e.pubber={})}(this,function(e){"use strict";var t={},o=t.hasOwnProperty,u=function(e){return delete t[e]};e.dispatch=function(n,c){o.call(t,n)&&t[n].callback.map(function(e){e(null!=c?c:{}),t[n].once&&u(n)})},e.subscribe=function(e,n,c){!o.call(t,e)&&(t[e]={topic:e,callback:[],once:c});t[e].callback.push(n)},e.unsubscribe=u,Object.defineProperty(e,"__esModule",{value:!0})});
+//# sourceMappingURL=index.js.map

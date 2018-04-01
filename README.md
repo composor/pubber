@@ -1,4 +1,4 @@
-pubber
+Pubber
 ======
 
 Pubber is an ES6 module for implementing pubsub in a project. It exposes three methods:
@@ -19,7 +19,7 @@ npm i -D pubber
 Import in Project
 -----------------
 
-After installing, you need to import `pubber` into your project. Remember, this is an ES6 module, so you need to use ES6 import syntax. 
+After installing, you need to import Pubber into your project. Remember, this is an ES6 module, so you need to use ES6 import syntax. 
 
 ```javascript
 import {subscribe, dispatch, unsubscribe} from 'pubber'
@@ -27,10 +27,10 @@ import {subscribe, dispatch, unsubscribe} from 'pubber'
 
 After importing, you can define subscribers and disptach topics and data. You can define a subscriber wherever it makes sense for your code.
 
-Creating a Subscriber
+Create a Subscriber
 ---------------------
 
-The `subscribe` function takes two arguments, a topice and a callback. The callback will be executed when the topic gets disptached. The callback can capture a default parameter representing any data that was dispatched with the topic:
+The `subscribe` function takes up to three arguments, a topic, a callback and an optional truthy value. The callback will be executed when the topic gets disptached. The callback can capture a default parameter representing any data that was dispatched with the topic:
 
 ```javascript
 // ...bunch of code...
@@ -50,7 +50,28 @@ subscribe('announcement', (msg) => {
 
 Now, it the wrong type was dispatched, the subscribe will ignore it. We could also modify this to exepct a string or a boolean.
 
-### Subscriber Without Data
+Force a Subscriber to Run Only Once
+-----------------------------------
+
+As was mentioned, a subscriber can take a third optional value, which should be truthy. Internally this is called "once" and it determines whether the subscription should be called only once. When you provide this third value and it is truthy, the subscriber will unsubscribe itself after executing. If this third argument is not provided, as in all the previous examples, the subscriber will execute each time a dispatch occurs.
+
+Below is an example of providing a third argument to a subscriber to force it to run only one time:
+
+```javascript
+// Define a subscriber that will fire only once.
+// Notice that we pass the value "true" as the last argument:
+subscribe(
+  'announcement', 
+  (msg) => {
+    typeof msg === 'string' && alert(`The message is: ${msg}`)
+  },
+  /* Force the subscriber to run only once. */
+  true
+)
+```
+
+Subscriber Without Data
+-----------------------
 
 A subscriber does not need to receive data. You could define a subscribe that just listens for a topic and then runs. Here's the previous subscriber refactored to work without data:
 
@@ -61,6 +82,7 @@ subscribe('announcement', () => alert('Just heard an announcement!'))
 ```
 
 With the above change, even if we dispatch 'announcement' with data, it will ignore the data and make the alert.
+
 
 Creating a Dispatcher
 ---------------------
@@ -109,20 +131,20 @@ If you need to, you can unsubscribe a topic. Since there may be multiple subscri
 ```javascript
 unsubscribe('announcement')
 ```
-
 In Browser
 ----------
 
-You can use `pubber` in the browser. Just import it with a script tag. Just import the version in the `dist` folder. This is in `umd` format, supporting AMD, CommonJS and browser globals:
+You can use Pubber in the browser. Just import it with a script tag pointing to the online version:
 
 ```html
-<script src="./js/pubber/dist/index.js"></script>
+<script src="https://unpkg.com/pubber@1.2.0/dist/index.js"></script>
 ```
 
-Then you can use it like this:
+The online version is in `umd` format, so the functions are namespaced to `pubber`. After importing Pubber with a script tag, you can use it like this:
 
 ```html
 <script>
+  // Grab functions from global Pubber object:
   const {subscribe, dispatch} = pubber
   subscribe('bozo', (data) => {
     alert(`This is the data: ${data}`)
